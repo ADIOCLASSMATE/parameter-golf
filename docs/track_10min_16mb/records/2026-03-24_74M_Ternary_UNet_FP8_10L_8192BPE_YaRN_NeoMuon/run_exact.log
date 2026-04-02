@@ -1,0 +1,20 @@
+logs/cuda/executor_2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon_exact.txt
+params:73685840 L:10 d:768 h:8 kv:4 ws:8 ga:1 s:42
+warmup:1/5
+warmup:2/5
+warmup:3/5
+warmup:4/5
+warmup:5/5
+step:1000/10000 loss:3.3193 t:91121ms avg:91.1ms
+step:2000/10000 loss:3.2894 t:182332ms avg:91.2ms
+step:3000/10000 loss:3.1513 t:273614ms avg:91.2ms
+step:4000/10000 loss:3.3105 t:364995ms avg:91.2ms
+step:5000/10000 loss:3.1771 t:456238ms avg:91.2ms
+step:6000/10000 loss:3.0250 t:547346ms avg:91.2ms
+step:6570/10000 val_loss:3.0496 val_bpb:1.1808 train_time:599391ms zero_frac:0.336
+stopping_early: wallclock_cap train_time:599391ms step:6570/10000
+artifact:15.93MB ternary:64880640(14240527B) fp:2513744(2537376B) code:70963
+budget:15996503/16000000 (16.00/16.00MB) FITS
+final_ternary_roundtrip val_loss:3.0539 val_bpb:1.1825
+temp_scaling optimal_T:0.90 eval_time:136ms
+final_sliding val_loss:2.9842 val_bpb:1.1555 (stride=16, T=0.90) eval_time:443296ms

@@ -1,5 +1,7 @@
 data/tokenizers
 __pycache__/
+**/__pycache__/
+*.py[cod]
 .DS_Store
 modded-nanogpt/
 modded-nanogpt
@@ -7,5 +9,14 @@ data/datasets
 data/manifest.json
 data/docs_selected.jsonl
 .mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.claude/
+.cursor/
+.idea/
+.vscode/
 .venv
+.venv-fa3/
 logs/
+final_model*.pt
+final_model*.ptz

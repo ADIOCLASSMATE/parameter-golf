@@ -1004,12 +1004,12 @@ def eval_val_sliding(args, model, rank, world_size, device, grad_accum_steps, va
     with torch.inference_mode():
         for i in range(0, len(my_starts), batch_size):
             batch_starts = my_starts[i:i + batch_size]
-
-            starts_t = torch.tensor(batch_starts, dtype=torch.int64)
-            offsets = torch.arange(seq_len + 1, dtype=torch.int64)
-            indices = starts_t.unsqueeze(1) + offsets.unsqueeze(0)
-
-            local_batch = val_tokens[indices].to(device=device, dtype=torch.int64, non_blocking=True)
+            # `val_tokens` may be backed by uint16 shards; advanced CPU indexing is not
+            # implemented for that dtype on this host, so materialize each sliding window
+            # with plain slicing before stacking.
+            local_batch = torch.stack(
+                [val_tokens[start:start + seq_len + 1].to(torch.int64) for start in batch_starts]
+            ).to(device=device, non_blocking=True)
             x = local_batch[:, :-1]
             y = local_batch[:, 1:]
 

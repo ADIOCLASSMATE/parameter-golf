@@ -1,0 +1,50 @@
+{
+  "record_slug": "2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon",
+  "record_dir": "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon",
+  "status": "exact",
+  "source_readme": "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/README.md",
+  "source_submission": "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/submission_ternary.json",
+  "source_script": "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/train_gpt_cuda_ternary.py",
+  "source_logs": [
+    "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/ternary_log_1337.txt",
+    "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/ternary_log_42.txt",
+    "records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/ternary_log_7.txt"
+  ],
+  "author": "Ciprian-Florin Ifrim",
+  "date": "2026-03-24",
+  "claimed_metric_name": "val_bpb",
+  "claimed_val_bpb": 1.1565,
+  "claimed_val_loss": 2.9869,
+  "claimed_artifact_bytes": 15993853,
+  "metric_mode": "ternary branch metric with sliding eval + temp scaling",
+  "required_packages": [
+    "zstandard",
+    "custom ternary setup.sh",
+    "8192-BPE tokenizer assets"
+  ],
+  "required_tokenizer": "record-local 8192-BPE tokenizer files",
+  "required_dataset": "record-local ternary assets / custom tokenizer workflow",
+  "hardware_notes": "Separate branch with custom setup, tokenizer, and script; do not treat as root-trainer-compatible",
+  "exact_command": "RUN_ID=executor_2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon_exact \\\nDATA_PATH=/inspire/hdd/global_user/wanjiaxin-253108030048/code/bag-of-tricks-transformers/parameter-golf/data/datasets/fineweb10B_sp8192 \\\nTOKENIZER_PATH=/inspire/hdd/global_user/wanjiaxin-253108030048/code/bag-of-tricks-transformers/parameter-golf/records/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/fineweb_8192_bpe.model \\\nATTN_PROJ_TYPE=standard \\\nLOGIT_HEAD_TYPE=standard \\\nTVERSKY_MEMBERSHIP=sigmoid \\\nTVERSKY_NUM_FEATURES=0 \\\nTVERSKY_FEATURE_POOLS=0 \\\nVOCAB_SIZE=8192 \\\nBITNET_GROUP_SIZE=128 \\\nBIGRAM_HASH=0 \\\nEMBED_DIM=254 \\\nTRAINING_DEPTH_RECURRENCE=0 \\\nEVAL_DEPTH_RECURRENCE=0 \\\nNUM_LAYERS=10 \\\nMODEL_DIM=768 \\\nNUM_KV_HEADS=4 \\\nNUM_HEADS=8 \\\nDIFF_ATTN=0 \\\nMLP_MULT=4 \\\nMLP_GROUPS=0 \\\nMATRIX_OPTIMIZER=muon \\\nADAM_LR=0.05 \\\nADAM_WD=0.05 \\\nMUON_BACKEND_STEPS=3 \\\nMUON_MOMENTUM=0.95 \\\nMUON_MOMENTUM_WARMUP_START=0.85 \\\nMUON_MOMENTUM_WARMUP_STEPS=500 \\\nMUON_WD=0.0 \\\nMATRIX_LR=0.04 \\\nSCALAR_LR=0.02 \\\nTIED_EMBED_LR=0.02 \\\nWARMDOWN_FRACTION=0.2 \\\nLOGIT_SOFTCAP=10 \\\nQK_GAIN_INIT=2.25 \\\nROPE_TYPE=yarn \\\nYARN_MAX_LEN=2048 \\\nROPE_BASE=5000 \\\nBATCH_TOKENS_START=0 \\\nBATCH_SCHEDULE_FRACTION=0.33 \\\nTRAIN_BATCH_TOKENS=524288 \\\nSEQ_LEN_START=0 \\\nSEQ_SCHEDULE_FRACTION=0.0 \\\nTRAIN_SEQ_LEN=1024 \\\nSMEAR=0 \\\nITERATIONS=10000 \\\nWARMUP_STEPS=5 \\\nMAX_WALLCLOCK_SECONDS=599 \\\nVAL_LOSS_EVERY=0 \\\nTRAIN_LOG_EVERY=1000 \\\nCHURN_LOG_EVERY=0 \\\nVAL_MAX_TOKENS=0 \\\nTIE_EMBEDDINGS=1 \\\nUNTIE_AT_FRACTION=0.00 \\\nHEAD_LR=0.02 \\\nCORR_WEIGHT_LR=0.02 \\\nACTIVATION=relu2 \\\nSOFTCAP_TYPE=poly \\\nMTP_HEADS=0 \\\nREFINER=0 \\\nREFINER_KERNEL=3 \\\nSLIDING_EVAL=1 \\\nSLIDING_EVAL_STRIDE=16 \\\nSLIDING_BATCH_SIZE=256 \\\nTEMP_SCALING=1 \\\nFP_STORAGE=FP8 \\\nSEED=42 \\\nCOMPILE_MODE=default \\\nOMP_NUM_THREADS=1 \\\nuv run --python .venv-fa3/bin/python torchrun --standalone --nproc_per_node=8 \\\nrecords/track_10min_16mb/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/train_gpt_cuda_ternary.py",
+  "reproduced_val_bpb": 1.1555,
+  "reproduced_val_loss": 2.9842,
+  "reproduced_artifact_bytes": 15925540,
+  "reproduced_steps": 6570,
+  "reproduced_step_avg_ms": null,
+  "wandb_run_name": "",
+  "wandb_mode": "offline",
+  "local_log_path": "docs/track_10min_16mb/records/2026-03-24_74M_Ternary_UNet_FP8_10L_8192BPE_YaRN_NeoMuon/run_exact.log",
+  "delta_val_bpb": -0.001,
+  "delta_val_loss": -0.0027,
+  "notes": [
+    "Exact current-session rerun used the record-local script snapshot and local dataset/tokenizer paths.",
+    "Metric semantics were preserved from the record-local script; compare only against records with matching evaluation mode.",
+    "See the local run log for the concrete throughput and final metric lines on this host."
+  ],
+  "family": "separate ternary / 8192-BPE branch",
+  "claimed_run_name": "73.7M Ternary U-Net \u2014 BitNet b1.58 + NeoMuon + 4x relu\u00b2 MLP + FP8 QAT + Base-3 LZMA",
+  "submission_blurb": "10L 768d ternary U-Net transformer with relu\u00b2 4x MLP, factored tied embedding (254-dim), FP8 QAT, poly5 softcap, YaRN 2048, NeoMuon optimizer (3 Newton-Schulz steps), base-3+LZMA compression. Sliding eval stride=16 with temperature scaling T=0.90. 3-seed mean 1.1570 bpb (std 0.0007).",
+  "claimed_method_summary": "10L 768d ternary U-Net transformer with relu\u00b2 4x MLP, factored tied embedding (254-dim), FP8 QAT, poly5 softcap, YaRN 2048, NeoMuon optimizer (3 Newton-Schulz steps), base-3+LZMA compression. Sliding eval stride=16 with temperature scaling T=0.90. 3-seed mean 1.1570 bpb (std 0.0007).",
+  "reproduction_kind": "exact",
+  "authoritative_observed_metric": "final_sliding"
+}

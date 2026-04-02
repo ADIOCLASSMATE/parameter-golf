@@ -160,6 +160,22 @@ By default, `train_gpt.py` keeps its ~10 minute wallclock cap. If you want a lon
 
 By default, this command prints `train_loss` step logs during training and prints `val_loss`, `val_bpb`, and compressed model size in the final `final_int8_zlib_roundtrip` lines at the end. If you want periodic validation logs during the run, set `VAL_LOSS_EVERY`, for example `VAL_LOSS_EVERY=200`. For the baseline config, the final `val_bpb` should land around ~1.2 with a compressed model size under 16MB.
 
+If you want optional W&B logging without modifying the baseline script, use `train_gpt_wandb.py`:
+
+```bash
+uv add wandb
+ENABLE_WANDB=1 \
+WANDB_MODE=offline \
+WANDB_PROJECT=parameter-golf \
+RUN_ID=baseline_sp1024_wandb \
+DATA_PATH=./data/datasets/fineweb10B_sp1024/ \
+TOKENIZER_PATH=./data/tokenizers/fineweb_1024_bpe.model \
+VOCAB_SIZE=1024 \
+torchrun --standalone --nproc_per_node=1 train_gpt_wandb.py
+```
+
+`train_gpt_wandb.py` preserves the normal stdout and `logs/{RUN_ID}.txt` logging. For challenge-style evaluation, keep W&B disabled or use `WANDB_MODE=offline` to avoid network calls.
+
 For dataset export, tokenizer export, and docs-cache rebuild instructions, see [data/README.md](data/README.md).
 
 Evaluation will be in the RunPod environment with all packages installed. `requirements.txt` is provided as a reference if you want to self-setup.

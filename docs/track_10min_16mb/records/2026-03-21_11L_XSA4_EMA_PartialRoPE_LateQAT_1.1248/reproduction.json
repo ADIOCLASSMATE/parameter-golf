@@ -1,0 +1,50 @@
+{
+  "record_slug": "2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248",
+  "record_dir": "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248",
+  "status": "exact",
+  "source_readme": "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/README.md",
+  "source_submission": "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/submission.json",
+  "source_script": "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train_gpt.py",
+  "source_logs": [
+    "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train.log",
+    "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train_seed1337.log",
+    "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train_seed2025.log",
+    "records/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train_seed42.log"
+  ],
+  "author": "Jack Princz",
+  "date": "2026-03-21",
+  "claimed_metric_name": "val_bpb",
+  "claimed_val_bpb": 1.12484502,
+  "claimed_val_loss": 1.89924867,
+  "claimed_artifact_bytes": 15612308,
+  "metric_mode": "3-seed sliding-window post-quant eval",
+  "required_packages": [
+    "flash-attn-3",
+    "zstandard"
+  ],
+  "required_tokenizer": "fineweb_1024_bpe.model",
+  "required_dataset": "fineweb10B_sp1024",
+  "hardware_notes": "8xH100 SXM target unless record README says otherwise",
+  "exact_command": "RUN_ID=executor_2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248_exact \\\nDATA_PATH=/inspire/hdd/global_user/wanjiaxin-253108030048/code/bag-of-tricks-transformers/parameter-golf/data/datasets/fineweb10B_sp1024 \\\nTOKENIZER_PATH=/inspire/hdd/global_user/wanjiaxin-253108030048/code/bag-of-tricks-transformers/parameter-golf/data/tokenizers/fineweb_1024_bpe.model \\\nNUM_LAYERS=11 \\\nBIGRAM_VOCAB_SIZE=2048 \\\nXSA_LAST_N=4 \\\nEMA_ENABLED=1 \\\nEMA_DECAY=0.997 \\\nSWA_ENABLED=0 \\\nROPE_DIMS=16 \\\nLN_SCALE=1 \\\nLATE_QAT=1 \\\nQAT_THRESHOLD=0.1 \\\nMUON_WD=0.04 \\\nADAM_WD=0.04 \\\nMATRIX_LR=0.025 \\\nSCALAR_LR=0.025 \\\nTIED_EMBED_LR=0.035 \\\nMUON_MOMENTUM=0.99 \\\nMUON_MOMENTUM_WARMUP_START=0.92 \\\nMUON_MOMENTUM_WARMUP_STEPS=1500 \\\nWARMDOWN_ITERS=3000 \\\nITERATIONS=9000 \\\nMAX_WALLCLOCK_SECONDS=600 \\\nEVAL_STRIDE=64 \\\nSEED=2025 \\\nuv run --python .venv-fa3/bin/python torchrun --standalone --nproc_per_node=8 \\\nrecords/track_10min_16mb/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/train_gpt.py",
+  "reproduced_val_bpb": 1.12447407,
+  "reproduced_val_loss": 1.89862234,
+  "reproduced_artifact_bytes": null,
+  "reproduced_steps": 7007,
+  "reproduced_step_avg_ms": 85.63,
+  "wandb_run_name": "",
+  "wandb_mode": "offline",
+  "local_log_path": "docs/track_10min_16mb/records/2026-03-21_11L_XSA4_EMA_PartialRoPE_LateQAT_1.1248/run_exact.log",
+  "delta_val_bpb": -0.00037095,
+  "delta_val_loss": -0.00062633,
+  "notes": [
+    "Exact current-session rerun used the record-local script snapshot and local dataset/tokenizer paths.",
+    "Metric semantics were preserved from the record-local script; compare only against records with matching evaluation mode.",
+    "See the local run log for the concrete throughput and final metric lines on this host."
+  ],
+  "family": "architecture additions",
+  "claimed_run_name": "Record: 11L Partial RoPE + LN Scale + EMA + XSA4",
+  "submission_blurb": "11 layers with Partial RoPE (16 of 64 dims), LN Scale (1/sqrt(l+1)), EMA weight averaging (decay=0.997), Exclusive Self Attention (XSA) on last 4 layers. Int6 per-row on all MLP+attention weights, int8 tok_emb, zstd-22. Weight decay 0.04 (Muon+AdamW). OrthoInit + muP scaling. SmearGate + BigramHash(2048x128). FA3. Sliding window eval stride=64, seq=2048. Note: Late QAT flag is present in the code but inactive due to torch.compile constant-folding.",
+  "claimed_method_summary": "11 layers with Partial RoPE (16 of 64 dims), LN Scale (1/sqrt(l+1)), EMA weight averaging (decay=0.997), Exclusive Self Attention (XSA) on last 4 layers. Int6 per-row on all MLP+attention weights, int8 tok_emb, zstd-22. Weight decay 0.04 (Muon+AdamW). OrthoInit + muP scaling. SmearGate + BigramHash(2048x128). FA3. Sliding window eval stride=64, seq=2048. Note: Late QAT flag is present in the code but inactive due to torch.compile constant-folding.",
+  "reproduction_kind": "exact",
+  "authoritative_observed_metric": "final_int6_sliding_window_exact"
+}

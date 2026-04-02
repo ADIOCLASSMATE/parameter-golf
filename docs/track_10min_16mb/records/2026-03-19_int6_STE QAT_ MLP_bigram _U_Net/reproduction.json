@@ -1,0 +1,41 @@
+{
+  "record_slug": "2026-03-19_int6_STE QAT_ MLP_bigram _U_Net",
+  "record_dir": "records/track_10min_16mb/2026-03-19_int6_STE QAT_ MLP_bigram _U_Net",
+  "status": "incomplete_repo_snapshot",
+  "source_readme": "",
+  "source_submission": "",
+  "source_script": "",
+  "source_logs": [
+    "records/track_10min_16mb/2026-03-19_int6_STE QAT_ MLP_bigram _U_Net/train.log"
+  ],
+  "author": null,
+  "date": "2026-03-19",
+  "claimed_metric_name": "val_bpb",
+  "claimed_val_bpb": null,
+  "claimed_val_loss": null,
+  "claimed_artifact_bytes": null,
+  "metric_mode": "unknown / missing metadata",
+  "required_packages": [],
+  "required_tokenizer": "fineweb_1024_bpe.model",
+  "required_dataset": "fineweb10B_sp1024",
+  "hardware_notes": "8xH100 SXM target unless record README says otherwise",
+  "exact_command": "",
+  "reproduced_val_bpb": null,
+  "reproduced_val_loss": null,
+  "reproduced_artifact_bytes": null,
+  "reproduced_steps": null,
+  "reproduced_step_avg_ms": null,
+  "wandb_run_name": "",
+  "wandb_mode": "offline",
+  "local_log_path": "",
+  "delta_val_bpb": null,
+  "delta_val_loss": null,
+  "notes": [
+    "Fill after reproduction.",
+    "State clearly whether the reproduction used the exact record-local script or an approximation."
+  ],
+  "family": "incomplete / orphaned snapshot",
+  "claimed_run_name": null,
+  "submission_blurb": null,
+  "claimed_method_summary": null
+}
